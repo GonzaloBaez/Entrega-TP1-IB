@@ -6,7 +6,7 @@
 
   295  cd paso_2
 
-  296  cat instrucciones.txt 
+  296  cat instrucciones.txt
 
   297  cd ..
 
