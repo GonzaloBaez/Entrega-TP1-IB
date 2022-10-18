@@ -4,9 +4,16 @@ import time
 import random
 
 score = 0
-rivalScore = 10
+rivalScore = 0
 rivalName = 'RNA'
-
+easyQ = []
+hardQ = []
+class Question:
+    def __init__(self,quest,possibleAnswers,correctAnswer,points):
+        self.quest = quest
+        self.possibleAnswers = possibleAnswers
+        self.correctAnswer = correctAnswer
+        self.points = points
 
 def showScore():
     customPrint(
@@ -15,7 +22,7 @@ def showScore():
     customPrint(
             f"{rivalName} obtuvo {rivalScore} y {name} {score}")
     if score > rivalScore:
-        customPrint(f"EL GANADOR ES {name}")
+        customPrint(f"EL GANADOR ES {name.upper()}")
         customPrint(f"")
         customPrint(f"")
         customPrint('           y͓̌â͎ ͮͩ͒ͯͣno͖̙̖͔͇̎͊̐ͪ̾́ͅs̺̟̺ͩ͗ͦ ̭̀v̯̆o̹ͬl͊͛ͩ́̃̓v͍͔̹̘̩̺́͊̈ͩ́̔e͚͎̭̪̳̬͍͑ͨ̂̿̿ͨ͆r͎̗̟͉͕̖ͮ̉͒͆ͧ͂em͂ͯ́̿̂ͭo̭̼̙̱͆̔͑̑š̊̎ͯ̿̄ ̠̫͙a͇̪͙̅͆̒ ̲̲̝̓̇ͮe͕͎͈̳͓͎̿ͧ͛ͨ̀́n̽ͯc͔̮̩̤ͤͫͥ͑ỏ̹̠̏n͇ͧt͉̲̟̖̮̘r̝͛a͎̯̯̤̬r̜̘̩͔̮̺͕..̺̥̥͖͈̫̫̉̓͋̉̾ͬ̾.̗̇.....')
@@ -59,7 +66,7 @@ def multipleChoice(question, answers, correctNumber, points):
         customPrint(
             f'Mm esa opción no es correcta')
 
-    customPrint(f'Turno de {rivalName}')
+    customPrint(f'Turno de {rivalName}\n')
     time.sleep(2)
     rivalAnswer = random.choice(answers)
     customPrint(f'El rival respondio: {rivalAnswer}')
@@ -80,33 +87,64 @@ def clearConsole():
 
 
 def stepOne():
-    customPrint(f' Excelente {name}  A JUGAR!!!')
+    customPrint(f' Excelente {name} A JUGAR!!!')
     time.sleep(2)
     customPrint(' Empecemos con preguntas sencillas!')
-    multipleChoice("Cuantos tipos de células existen?", [
-        "Una", "Dos", "Infinitas"], 2, 1)
-    multipleChoice("Cual fue la primera en aparecer?", [
-        "Eucariota", "Procariota", "Las dos aparecieron al mismo tiempo"], 2, 1)
-    multipleChoice("Cuantos flagelos tiene una Celula Eucariota?", [
-        "Uno", "Dos", "No tiene"], 3, 1)
+    q1 = random.choice(easyQ)
+    easyQ.remove(q1)
+    q2 = random.choice(easyQ)
+    easyQ.remove(q2)
+    q3 = random.choice(easyQ)
+    easyQ.remove(q3)
+    multipleChoice(q1.quest,q1.possibleAnswers,q1.correctAnswer,q1.points)
+    multipleChoice(q2.quest,q2.possibleAnswers,q2.correctAnswer,q2.points)
+    multipleChoice(q3.quest,q3.possibleAnswers,q3.correctAnswer,q3.points)
 
 
 def stepTwo():
-    customPrint(f'Ahora vamos a complicarlo un poco..')
-    multipleChoice("Cuales son los pasos de la expresión génica?", [
-        "Transcripción y traducción", "Transferencia y transcripción", "Traducción y transferencia"], 1, 20)
-    multipleChoice("Cuales de los siguientes nombres no identifica un aminoacido?", [
-        "Asparato", "Alanina", "Serina", "Recina"], 4, 20)
+    customPrint(f'Sencillas no? Veamos ahora..')
+    
+    q1 = random.choice(hardQ)
+    hardQ.remove(q1)
+    q2 = random.choice(hardQ)
+    hardQ.remove(q2)
+    multipleChoice(q1.quest,q1.possibleAnswers,q1.correctAnswer,q1.points)
+    multipleChoice(q2.quest,q2.possibleAnswers,q2.correctAnswer,q2.points)
 
 
 
 
 
 try:
+    easyQ.append(Question("Cuantos tipos de células existen?",
+        ["Una", "Dos", "Infinitas"],2,1))
+    easyQ.append(Question("Cual fue la primera celula en aparecer?",
+    ["Eucariota", "Procariota", "Las dos aparecieron al mismo tiempo"],2,1))
+    easyQ.append(Question("Cuantos flagelos tiene una Celula Eucariota?",
+    ["Uno", "Dos", "No tiene"],3,1))
+    easyQ.append(Question("De que estan compuestas las proteinas?",
+    ["Aminoacidos", "Celulas", "Otras proteinas"],1,1))
+    easyQ.append(Question("Cuantos aminoacidos distintos existen?",
+    ["21", "23", "20"],3,1))
+    easyQ.append(Question("Donde ocurre la expresion genica?",
+    ["En la membrana plasmatica", "En el ribosoma", "En la mitocondria"],2,1))
+    
+    hardQ.append(Question("Cuales son los pasos de la expresión génica?",
+    ["Transcripción y traducción", "Transferencia y transcripción", "Traducción y transferencia"],1,2))
+    hardQ.append(Question("A que aminoacido corresponde el codigo de 3 letras Gln?",
+    ["Glutamina", "Glicina", "Leucina"],1,2))
+    hardQ.append(Question("Que nombre reciben las cadenas de aminoacidos?",
+    ["Polipeptidos", "Aminopeptidos", "Proteipeptidos"],1,2))
+    hardQ.append(Question("Cuantos nucleotidos componen un codon?",
+    ["Dos", "Cinco", "Tres"],3,2))
+    hardQ.append(Question("Quien se encarga de transferir el codigo genetico en la expresion genica?",
+    ["ADN", "Codones", "ARNm"],3,2))
     customPrint('--------------------------------------')
     customPrint(' EL JUEGO DE LA VIDA')
     customPrint('              ')
     customPrint(' Bienvenido al Juego de la Vida. Juego que desafia tus conocimientos sobre la expresion Genica.')
+    customPrint(' El juego consiste en una serie de preguntas de las cuales las mas sencillas dan 1 punto, y las mas dificiles 2.')
+    customPrint(' Responde correctamente la mayor cantidad de preguntas para obtener el mayor puntaje posible!!!!')
     customPrint(f' Para hacerlo aun mas desafiante y competitivo, jugaras contra un robot llamado {rivalName} (Robot No Amigable).')
     customPrint('Dicho Robot se encarga de encriptar la informacion importante de las personas y pedirles dinero a cambio para recuperarlo...')
     customPrint('(◣_◢)')
@@ -118,9 +156,9 @@ try:
     customPrint('--------------------------------------')
     name = customInput(' Pero antes, dinos tu nombre:\n> ')
     customPrint(' ')
-    #stepOne()
+    stepOne()
     customPrint(' ')
-    #stepTwo()
+    stepTwo()
     customPrint(' ')
     showScore()
 except:
