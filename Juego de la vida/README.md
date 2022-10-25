@@ -1,6 +1,4 @@
-# Entrega-TP1-I
-
-## Juego de la vida
+# Juego de la vida
 
 El juego de la vida consiste en una competencia de preguntas contra un Robotito poco amigable.
 El que responda correctamente obtendra puntos, y el que mas puntos tenga gana!

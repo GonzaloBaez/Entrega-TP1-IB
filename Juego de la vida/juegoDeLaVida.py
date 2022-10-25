@@ -118,7 +118,7 @@ def stepTwo():
 try:
     easyQ.append(Question("Cuantos tipos de células existen?",
         ["Una", "Dos", "Infinitas"],2,1))
-    easyQ.append(Question("Cual fue la primera celula en aparecer?",
+    easyQ.append(Question("Cual fue el primer tipo de celula en aparecer?",
     ["Eucariota", "Procariota", "Las dos aparecieron al mismo tiempo"],2,1))
     easyQ.append(Question("Cuantos flagelos tiene una Celula Eucariota?",
     ["Uno", "Dos", "No tiene"],3,1))
@@ -126,7 +126,7 @@ try:
     ["Aminoacidos", "Celulas", "Otras proteinas"],1,1))
     easyQ.append(Question("Cuantos aminoacidos distintos existen?",
     ["21", "23", "20"],3,1))
-    easyQ.append(Question("Donde ocurre la expresion genica?",
+    easyQ.append(Question("Donde ocurre la traduccion?",
     ["En la membrana plasmatica", "En el ribosoma", "En la mitocondria"],2,1))
     
     hardQ.append(Question("Cuales son los pasos de la expresión génica?",
